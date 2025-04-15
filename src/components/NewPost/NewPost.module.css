@@ -1,0 +1,61 @@
+.root {
+  width: 400px;
+  margin: 32px auto 0 auto;
+}
+
+.root h2 {
+  font-size: 32px;
+  font-family: var(--space-grotesk);
+}
+
+.root label {
+  color: var(--gray);
+}
+
+.form-container {
+  margin-top: 16px;
+}
+
+.form-group {
+  position: relative;
+  padding: 16px 0 16px 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+form .form-container:first-child .form-group {
+  height: 100px;
+}
+
+.form-group > textarea,
+.form-group > input {
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  height: 100%;
+  padding: 16px 32px 16px 0;
+  font-family: var(--inter);
+  outline: none;
+  color: var(--gray);
+  font-size: 16px;
+}
+
+.form-group svg {
+  position: absolute;
+  right: 0;
+  font-size: 24px;
+  color: var(--black);
+}
+
+form .form-container:nth-child(2) .form-group {
+  height: 52px;
+}
+
+form > button:first-of-type {
+  margin-top: 32px;
+  width: 100%;
+}
