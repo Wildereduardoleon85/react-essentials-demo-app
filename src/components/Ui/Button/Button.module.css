@@ -1,0 +1,28 @@
+.root {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 16px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: 2px solid var(--black);
+  border: 1px solid transparent;
+  margin-top: 2px;
+  transition-property: 'transform';
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.root:hover {
+  transform: translateY(-2px);
+}
+
+.root:focus-visible {
+  border: 1px solid var(--white);
+}
+
+.root:disabled {
+  background-color: var(--light-gray);
+  color: var(--gray);
+  outline: none;
+  pointer-events: none;
+}

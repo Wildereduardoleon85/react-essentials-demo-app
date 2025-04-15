@@ -1,14 +1,17 @@
-import NewPost from '../NewPost'
+import { type Post as PostType } from '../../App'
 import Post from '../Post'
 import styles from './PostList.module.css'
 
-export default function PostList() {
+type PostListProps = {
+  posts: PostType[]
+}
+
+export default function PostList({ posts }: Readonly<PostListProps>) {
   return (
-    <>
-      <NewPost />
-      <ul className={styles.root}>
-        <Post author="Wilder" body="React is awesome!" />
-      </ul>
-    </>
+    <ul className={styles.root}>
+      {posts.map((post) => (
+        <Post key={post.name} author={post.name} body={post.body} />
+      ))}
+    </ul>
   )
 }

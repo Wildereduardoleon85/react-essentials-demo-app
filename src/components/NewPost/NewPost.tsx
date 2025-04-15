@@ -1,15 +1,19 @@
 import { useState } from 'react'
-import Card from '../Card'
 import styles from './NewPost.module.css'
 import { LuUser, LuMessageSquareMore } from 'react-icons/lu'
+import { Button, Card } from '../Ui'
+import { type Post } from '../../App'
 
-type InputValues = {
-  name: string
-  body: string
+type NewPostProps = {
+  onNewPost: (post: Post) => void
 }
 
-export default function NewPost() {
-  const [values, setValues] = useState<InputValues>({ name: '', body: '' })
+const initialState = { name: '', body: '' }
+
+export default function NewPost({ onNewPost }: Readonly<NewPostProps>) {
+  const [values, setValues] = useState<Post>(initialState)
+
+  const isFormValid = Object.values(values).every((value) => !!value)
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -20,10 +24,18 @@ export default function NewPost() {
     }))
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (isFormValid) {
+      onNewPost(values)
+      setValues(initialState)
+    }
+  }
+
   return (
     <Card className={styles.root}>
       <h2>New Post</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={styles['form-container']}>
           <div className={styles['form-group']}>
             {!values.body && <label htmlFor="body">Text *</label>}
@@ -31,7 +43,7 @@ export default function NewPost() {
               name="body"
               onChange={handleInputChange}
               value={values.body}
-            ></textarea>
+            />
             <LuMessageSquareMore />
           </div>
         </div>
@@ -47,7 +59,9 @@ export default function NewPost() {
             <LuUser />
           </div>
         </div>
-        <button className="button">Create</button>
+        <Button type="submit" disabled={!isFormValid}>
+          Create
+        </Button>
       </form>
     </Card>
   )

@@ -1,3 +1,4 @@
+import { Card } from '../Ui'
 import styles from './Post.module.css'
 
 type PostProps = {
@@ -7,9 +8,9 @@ type PostProps = {
 
 export default function Post({ author, body }: Readonly<PostProps>) {
   return (
-    <li className={styles.root}>
+    <Card className={styles.root} component="li">
       <h4>{author}</h4>
       <p>{body}</p>
-    </li>
+    </Card>
   )
 }
